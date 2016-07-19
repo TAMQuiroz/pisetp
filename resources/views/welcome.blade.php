@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html>
     <head>
         <title>Laravel</title>
@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Prueba tesis 2 :v</div>
+                <div class="title">Laravel 5</div>
             </div>
         </div>
     </body>

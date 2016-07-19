@@ -4,9 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "35e2e9c4bf1723fe4c1d9a16456ba408",
-    "content-hash": "0feb6af5bef0e094e776fba476c27e7c",
+    "hash": "821fc201f6b26c1e19f6ea04ddbc0dd8",
+    "content-hash": "b20ddea22d6badbddcecedfd51335936",
     "packages": [
+        {
+            "name": "caouecs/laravel-lang",
+            "version": "3.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/caouecs/Laravel-lang.git",
+                "reference": "73b0378492a7f49a998b44548a4454826d7d384c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/73b0378492a7f49a998b44548a4454826d7d384c",
+                "reference": "73b0378492a7f49a998b44548a4454826d7d384c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "^1.10"
+            },
+            "suggest": {
+                "overtrue/laravel-lang": "Command to add languages in your project"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "caouecs",
+                    "email": "caouecs@caouecs.net"
+                }
+            ],
+            "description": "Languages for Laravel",
+            "keywords": [
+                "lang",
+                "languages",
+                "laravel",
+                "lpm"
+            ],
+            "time": "2016-07-04 22:13:05"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "3.0.0",
