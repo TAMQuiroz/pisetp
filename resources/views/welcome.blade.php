@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">Prueba tesis 2 :v</div>
             </div>
         </div>
     </body>
