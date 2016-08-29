@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+
 use App\Classes\Stemm_es;
 use Illuminate\Http\Request; 
 use Carbon\Carbon;
+use App\User;
 use App\Http\Requests;
 
 class TestController extends Controller
