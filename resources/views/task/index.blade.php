@@ -2,7 +2,7 @@
 
 @extends('layouts.app')
 
-@section('title', 'Index')
+@section('title', 'Mantenimiento de Tareas')
 
 @section('content')
     <div class="container-fluid">
@@ -11,20 +11,22 @@
                 
                 <div class="panel panel-default">
                     <div class="panel-body">
-
-                        <a href="{{route('task.create')}}">
-                            <button type="button" class="btn btn-success pull-right">
-                                <i class="fa fa-plus"></i> Create
-                            </button>
-                        </a>
-
+                        <div class="col-md-6">
+                            <h4>Mantenimiento de Tareas</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{route('task.create')}}">
+                                <button type="button" class="btn btn-success pull-right">
+                                    <i class="fa fa-plus"></i> Create
+                                </button>
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                @if (count($tasks) > 0)
+                @if (!empty($tasks))
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Current Tasks
+                        Tareas actuales
                     </div>
 
                     <div class="panel-body">
@@ -32,8 +34,9 @@
 
                             <!-- Table Headings -->
                             <thead>
-                                <th>Task</th>
-                                <th>&nbsp;</th>
+                                <th>Nombre</th>
+                                <th>Acciones</th>
+                                <th></th>
                             </thead>
 
                             <!-- Table Body -->
@@ -41,21 +44,21 @@
                                 @foreach ($tasks as $task)
                                     <tr>
                                         <!-- Task Name -->
-                                        <td class="table-text">
+                                        <td>
                                             <div>{{ $task->name }}</div>
                                         </td>
 
                                         <td>
                                             <a href="{{route('task.show',$task->id)}}">
-                                                <button type="submit" class="btn btn-primary pull-right">
+                                                <button type="submit" class="btn btn-primary">
                                                     <i class="fa fa-search"></i> Show
-                                                </button>                                                
+                                                </button>
                                             </a>
                                         </td>    
                                         <!-- Delete Button -->
                                         <td>
                                             {{Form::open(['route' => ['task.delete', $task->id], 'method' => 'DELETE'])}}
-                                                <button type="submit" class="btn btn-danger pull-right">
+                                                <button type="submit" class="btn btn-danger">
                                                     <i class="fa fa-trash"></i> Delete
                                                 </button>
                                             {{Form::close()}}
@@ -67,6 +70,8 @@
                         {{ $tasks->links() }}
                     </div>
                 </div>
+                @else
+                No se encontraron tareas
                 @endif
             </div>
         </div>
