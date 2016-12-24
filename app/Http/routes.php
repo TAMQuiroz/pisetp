@@ -19,7 +19,7 @@ Route::auth();
 
 Route::group(['middleware' => 'auth'], function() {
 
-	Route::get('/home', 'HomeController@index');
+	Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'home']);
 
 	//TASKS
 	Route::group(['prefix' => 'task'], function () {

@@ -24,7 +24,10 @@ class TaskRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
+            'name'          => 'required|max:255',
+            'description'   => 'max:511',
+            'date'          => 'required|date|after:today',
+            'image'         => 'image',
         ];
     }
 
@@ -36,7 +39,6 @@ class TaskRequest extends Request
     public function messages()
     {
         return [
-            'name.required' => 'Se necesita un nombre para esta tarea',
         ];
     }
 }

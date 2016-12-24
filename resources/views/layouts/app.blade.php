@@ -38,8 +38,8 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                    <li><a href="{{ route('task.index') }}">Task</a></li>
+                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="{{ route('task.index') }}">Tareas</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -47,7 +47,7 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/register') }}">Registrar</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -64,11 +64,29 @@
         </div>
     </nav>
 
+    <!-- Display Validation Errors -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                @include('errors.errors')
+            </div>
+        </div>
+    </div>
+
+    <!-- Display Validation Success -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                @include('success.success')
+            </div>
+        </div>
+    </div>
+
     @yield('content')
 
     <!-- JavaScripts -->
+    <script src="{{ URL::asset('js/app.js') }}"></script>
     <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ URL::asset('js/app.js') }}"></script>
 </body>
 </html>

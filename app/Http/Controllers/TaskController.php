@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Storage;
 use App\Models\Task;
 use App\Http\Requests;
 use App\Http\Requests\TaskRequest;
@@ -23,9 +24,11 @@ class TaskController extends Controller
         $tasks = Task::forUser(Auth::user());
         $tasks = $tasks->paginate(3);
         
-        return view('task.index', [
+        $data = [
             'tasks' => $tasks
-        ]);
+        ];
+
+        return view('task.index', $data);
     }
 
     /**
@@ -47,12 +50,19 @@ class TaskController extends Controller
     public function store(TaskRequest $request)
     {
         // Create The Task...
-        $task = new Task;
-        $task->user_id = Auth::id();
-        $task->name = $request->name;
-        $task->save();
+        $task = Task::create([
+            'name'          =>  $request->name,
+            'user_id'       =>  Auth::id(),
+            'description'   =>  $request->description,
+            'date'          =>  $request->date,
+        ]);
 
-        return redirect()->route('task.index');
+        if($request->file('image')){
+            Storage::put('public/images/tasks/'.$task->id.'.'.$request->file('image')->getClientOriginalExtension(), file_get_contents($request->file('image')->getRealPath()));
+            $task->update(['image' => 'images/tasks/'.$task->id.'.'.$request->file('image')->getClientOriginalExtension()]);
+        }
+
+        return redirect()->route('task.index')->with('status','Se pudo crear la tarea satisfactoriamente');
     }
 
     /**
@@ -65,9 +75,11 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
 
-        return view('task.show', [
+        $data = [
             'task' => $task
-        ]);
+        ];
+
+        return view('task.show', $data);
     }
 
     /**
@@ -80,9 +92,11 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
 
-        return view('task.edit', [
+        $data = [
             'task' => $task
-        ]);
+        ];
+
+        return view('task.edit', $data);
     }
 
     /**
@@ -96,10 +110,18 @@ class TaskController extends Controller
     {
         // Create The Task...
         $task = Task::find($id);
-        $task->name = $request->name;
-        $task->save();
+        $task->update([
+            'name'          =>  $request->name,
+            'description'   =>  $request->description,
+            'date'          =>  $request->date,
+        ]);
 
-        return redirect()->route('task.show',$task->id);
+        if($request->file('image')){
+            Storage::put('public/images/tasks/'.$task->id.'.'.$request->file('image')->getClientOriginalExtension(), file_get_contents($request->file('image')->getRealPath()));
+            $task->update(['image' => 'images/tasks/'.$task->id.'.'.$request->file('image')->getClientOriginalExtension()]);
+        }
+
+        return redirect()->route('task.show',$task->id)->with('status','Se pudo editar la tarea satisfactoriamente');
     }
 
     /**
@@ -112,12 +134,17 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
         if(Auth::id() == $task->user_id){
+            $exists = Storage::exists('public/'.$task->image);
+
+            if($exists){
+                Storage::delete('public/'.$task->image);
+            }
+            
             $task->delete();    
         }else{
-
+            return redirect()->back()->withErrors(['La tarea solo puede ser eliminada por el autor de la misma']);
         }
-        
 
-        return redirect()->route('task.index');
+        return redirect()->route('task.index')->with('status','Se pudo eliminar la tarea satisfactoriamente');
     }
 }
