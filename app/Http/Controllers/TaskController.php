@@ -19,9 +19,9 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::forUser(Auth::user());
+        $tasks = Task::getFilteredForUser($request->all());
         $tasks = $tasks->paginate(3);
         
         $data = [
@@ -117,6 +117,13 @@ class TaskController extends Controller
         ]);
 
         if($request->file('image')){
+
+            $exists = Storage::exists('public/'.$task->image);
+
+            if($exists){
+                Storage::delete('public/'.$task->image);
+            }
+            
             Storage::put('public/images/tasks/'.$task->id.'.'.$request->file('image')->getClientOriginalExtension(), file_get_contents($request->file('image')->getRealPath()));
             $task->update(['image' => 'images/tasks/'.$task->id.'.'.$request->file('image')->getClientOriginalExtension()]);
         }

@@ -21,6 +21,28 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'home']);
 
+	//ROLES
+	Route::group(['prefix' => 'roles'], function () {	
+		Route::get('/', ['uses' => 'RoleController@index', 'as' => 'role.index']);
+		Route::get('edit/{id}', ['uses' => 'RoleController@edit', 'as' => 'role.edit']);
+		Route::post('edit/{id}', ['uses' => 'RoleController@update', 'as' => 'role.update']);
+
+		Route::delete('delete/{id}', ['uses' => 'RoleController@destroy', 'as' => 'role.delete']);
+	});
+
+	//USER
+	Route::group(['prefix' => 'user'], function () {
+
+		Route::get('/', ['uses' => 'UserController@index', 'as' => 'user.index']);
+		Route::get('show/{id}', ['uses' => 'UserController@show', 'as' => 'user.show']);
+
+		Route::get('edit/{id}', ['uses' => 'UserController@edit', 'as' => 'user.edit']);
+		Route::post('edit/{id}', ['uses' => 'UserController@update', 'as' => 'user.update']);
+
+		Route::delete('delete/{id}', ['uses' => 'UserController@destroy', 'as' => 'user.delete']);
+
+	});
+
 	//TASKS
 	Route::group(['prefix' => 'task'], function () {
 

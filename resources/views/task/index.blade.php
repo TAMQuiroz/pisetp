@@ -14,6 +14,9 @@
                             <h4>Mantenimiento de Tareas</h4>
                         </div>
                         <div class="col-md-6">
+                            {{Form::button('<i class="fa fa-filter"></i> Filtrar', ['class' => 'btn btn-warning', 'data-toggle' => 'modal', 'data-target' => '#filter'])}}
+                            @include('modals.tasks.filter-task', ['id'=> 'filter', 'url' => route('task.index')])
+
                             <a href="{{route('task.create')}}">
                                 {{Form::button('<i class="fa fa-plus"></i> Crear', ['class' => 'btn btn-success pull-right'])}}
                             </a>
@@ -27,7 +30,7 @@
 
                     <div class="panel-body">
                         @if(count($tasks) > 0)
-                            <table class="table table-striped task-table">
+                            <table class="table table-striped task-table table-hover">
 
                                 <!-- Table Headings -->
                                 <thead>

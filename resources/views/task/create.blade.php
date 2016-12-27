@@ -21,35 +21,40 @@
                         <!-- Task Name -->
                         <div class="form-group">
                             {{ Form::label('name','Nombre', ['class' => 'col-sm-3 control-label'])}}
-                            <div class="col-sm-6">
+                            <div class="col-sm-8">
                                 {{Form::text('name', null, ['id' => 'task-name', 'class' => 'form-control'])}}
                             </div>
                         </div>
 
                         <div class="form-group">
                             {{ Form::label('description','Descripcion', ['class' => 'col-sm-3 control-label'])}}
-                            <div class="col-sm-6">
+                            <div class="col-sm-8">
                                 {{Form::textarea('description', null, ['id' => 'task-desc', 'class' => 'form-control', 'rows' => 6])}}
                             </div>
                         </div>
 
                         <div class="form-group">
                             {{ Form::label('date','Fecha', ['class' => 'col-sm-3 control-label'])}}
-                            <div class="col-sm-6">
-                                {{Form::date('date', null, ['id' => 'task-date', 'class' => 'form-control'])}}
+                            <div class="col-sm-8">
+                                <div class='input-group date' id='date'>
+                                    {{Form::text('date', null, ['id' => 'task-date', 'class' => 'form-control'])}}
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             {{ Form::label('image','Imagen', ['class' => 'col-sm-3 control-label'])}}
-                            <div class="col-sm-6">
-                                {{Form::file('image', ['id' => 'task-image', 'class' => 'form-control'])}}
+                            <div class="col-sm-8">
+                                {{Form::file('image', ['id' => 'image', 'class' => 'form-control file'])}}
                             </div>
                         </div>
 
                         <!-- Add Task Button -->
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-6">
+                            <div class="col-sm-offset-3 col-sm-8">
                                 {{Form::button('<i class="fa fa-plus"></i> Crear', ['class' => 'btn btn-success', 'data-toggle' => 'modal', 'data-target' => '#task'])}}
                                 @include('modals.confirm', ['id'=> 'task', 'message' => '¿Esta seguro que desea hacer esta accion?'])
 

@@ -13,7 +13,24 @@
     
     <!-- Styles -->
     <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/fileinput.css') }}" media="all" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet">
+
+
+    <!-- JavaScripts -->
+    <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
+    <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ URL::asset('js/app.js') }}"></script>
+    <!-- the main fileinput plugin file -->
+    <script src="{{ URL::asset('js/fileinput.js') }}"></script>
+    <!-- optionally if you need translation for your language then include locale file as mentioned below -->
+    <script src="{{ URL::asset('js/locales/es.js') }}"></script>
+    <script src="{{ URL::asset('js/moment.js') }}"></script>
+    <script src="{{ URL::asset('js/moment-with-locales.js') }}"></script>
+    <script src="{{ URL::asset('js/bootstrap-datetimepicker.js') }}"></script>
+
+
 
 </head>
 <body id="app-layout">
@@ -31,15 +48,16 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                    Laravel :)
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('task.index') }}">Tareas</a></li>
+                    <li><a href="{{ route('home') }}">Tareas Publicas</a></li>
+                    <li><a href="{{ route('task.index') }}">Mis Tareas</a></li>
+                    <li><a href="{{ route('role.index') }}">Roles</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -55,6 +73,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('user.show',Auth::id()) }}"><i class="fa fa-btn fa-user"></i>Mi cuenta</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
@@ -84,9 +103,6 @@
 
     @yield('content')
 
-    <!-- JavaScripts -->
-    <script src="{{ URL::asset('js/app.js') }}"></script>
-    <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
-    <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+
 </body>
 </html>
