@@ -36,7 +36,32 @@
                         <div class="form-group">
                             {{ Form::label('url','Url de video', ['class' => 'col-sm-3 control-label'])}}
                             <div class="col-sm-8">
-                                {{Form::text('url', null, ['id' => 'task-url', 'class' => 'form-control'])}}
+                                <div class="input-group">
+                                    {{Form::text('url', null, ['id' => 'task-url', 'class' => 'form-control'])}}
+                                    <div class="input-group-addon pointer" data-toggle="modal" data-target="#videohelp">
+                                        <span class="glyphicon glyphicon-question-sign"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="videohelp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Instrucciones para URL</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <a class="thumbnail">
+                                            {{Html::image(asset('img/videohelp.jpg'), null, ['class' => 'thumbnail img-responsive'])}}
+                                        </a>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

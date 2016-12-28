@@ -8,7 +8,9 @@ window.setTimeout(function() {
 
 // Initialize file input with defaults with plugin options
 $( document ).ready(function() {
- 
+    //Para inicializar los popover en toda la aplicacion
+    $('[data-toggle="popover"]').popover();
+    
     //Mas informacion sobre fileinput aqui http://plugins.krajee.com/file-input
 	$("#image").fileinput({'showUpload':false, 'previewFileType':'any', 'language':'es', 'showUpload':false, 'allowedFileTypes':['image'], 'maxFileSize':2048});
 
