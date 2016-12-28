@@ -40,9 +40,15 @@
                         <div class="form-group">
                             {{ Form::label('url','Url de video', ['class' => 'col-sm-3 control-label'])}}
                             <div class="col-sm-8">
-                                {{Form::text('url', $task->url, ['id' => 'task-url', 'class' => 'form-control'])}}
+                                <div class="input-group">
+                                    {{Form::text('url', $task->url, ['id' => 'task-url', 'class' => 'form-control'])}}
+                                    <div class="input-group-addon pointer" data-toggle="modal" data-target="#videohelp">
+                                        <span class="glyphicon glyphicon-question-sign"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        @include('modals.videohelp')
 
                         <div class="form-group">
                             {{ Form::label('date','Fecha', ['class' => 'col-sm-3 control-label'])}}
