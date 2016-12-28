@@ -14,7 +14,7 @@ class Task extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','name','description','date','image'];
+    protected $fillable = ['user_id','name','description','date','image','url'];
 
     /**
      * Relationships

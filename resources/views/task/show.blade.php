@@ -9,7 +9,11 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-
+            <ol class="breadcrumb">
+                <li><a href="{{route('home')}}">Home</a></li>
+                <li><a href="{{route('task.index')}}">Lista de tareas</a></li>
+                <li class="active">Tarea</li>
+            </ol>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <b>Ver tarea</b>
@@ -35,6 +39,19 @@
                             {{ Form::label('date','Fecha', ['class' => 'col-sm-3 control-label'])}}
                             <div class="col-sm-8">
                                 {{Form::date('date', $task->date, ['id' => 'task-date', 'class' => 'form-control', 'readonly'])}}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ Form::label('url','Url de video', ['class' => 'col-sm-3 control-label'])}}
+                            <div class="col-sm-8">
+                            @if($task->url)
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    {!!$task->url!!}
+                                </div>
+                            @else
+                                {{Form::text('url', 'No tiene un video', ['id' => 'task-url', 'class' => 'form-control', 'readonly'])}}
+                            @endif
                             </div>
                         </div>
 

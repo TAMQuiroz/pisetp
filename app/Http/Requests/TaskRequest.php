@@ -25,6 +25,7 @@ class TaskRequest extends Request
     {
         return [
             'name'          => 'required|max:255',
+            'url'           => 'max:255',
             'description'   => 'max:511',
             'date'          => 'required|date|after:today',
             'image'         => 'image',

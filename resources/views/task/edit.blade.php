@@ -33,6 +33,13 @@
                         </div>
 
                         <div class="form-group">
+                            {{ Form::label('url','Url de video', ['class' => 'col-sm-3 control-label'])}}
+                            <div class="col-sm-8">
+                                {{Form::text('url', $task->url, ['id' => 'task-url', 'class' => 'form-control'])}}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             {{ Form::label('date','Fecha', ['class' => 'col-sm-3 control-label'])}}
                             <div class="col-sm-8">
                                 <div class='input-group date' id='date'>

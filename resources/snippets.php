@@ -15,3 +15,5 @@ if($request->file('image')){
     Storage::put('public/images/tasks/'.$task->id.'.'.$request->file('image')->getClientOriginalExtension(), file_get_contents($request->file('image')->getRealPath()));
     $task->update(['image' => 'images/tasks/'.$task->id.'.'.$request->file('image')->getClientOriginalExtension()]);
 }
+
+Indeed the symlink command should be "ln -sr storage/app/public public/storage"

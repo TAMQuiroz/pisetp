@@ -26,7 +26,7 @@ class RolesTableSeeder extends Seeder
         DB::table('roles')->insert([
         	'id'			=>	3,
             'name' 			=> 	'Humano',
-            'description' 	=> 	'Este usuario es un humano de la Rohan',
+            'description' 	=> 	'Este usuario es un humano de Rohan',
         ]);
     }
 }

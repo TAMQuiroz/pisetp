@@ -54,6 +54,7 @@ class TaskController extends Controller
             'name'          =>  $request->name,
             'user_id'       =>  Auth::id(),
             'description'   =>  $request->description,
+            'url'           =>  $request->url,
             'date'          =>  $request->date,
         ]);
 
@@ -113,6 +114,7 @@ class TaskController extends Controller
         $task->update([
             'name'          =>  $request->name,
             'description'   =>  $request->description,
+            'url'           =>  $request->url,
             'date'          =>  $request->date,
         ]);
 
