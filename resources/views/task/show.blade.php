@@ -12,7 +12,7 @@
             <ol class="breadcrumb">
                 <li><a href="{{route('home')}}">Home</a></li>
                 <li><a href="{{route('task.index')}}">Lista de tareas</a></li>
-                <li class="active">Tarea</li>
+                <li class="active">Ver Tarea</li>
             </ol>
             <div class="panel panel-default">
                 <div class="panel-heading">

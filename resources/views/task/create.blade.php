@@ -9,7 +9,11 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-
+            <ol class="breadcrumb">
+                <li><a href="{{route('home')}}">Home</a></li>
+                <li><a href="{{route('task.index')}}">Lista de tareas</a></li>
+                <li class="active">Crear Tarea</li>
+            </ol>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <b>Creacion de tarea</b>
