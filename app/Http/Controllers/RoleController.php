@@ -64,10 +64,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user   = Auth::user();
-        $roles  = Role::getNotSelected($id);
+        $roles  = Role::getNotSelected($user);
 
         $data = [
             'user'  => $user,
@@ -84,9 +83,8 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::find($id);
         foreach ($request->roles as $role) {
             $user->roles()->attach($role);
         }

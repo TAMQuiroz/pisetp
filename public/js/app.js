@@ -13,6 +13,7 @@ $( document ).ready(function() {
     
     //Mas informacion sobre fileinput aqui http://plugins.krajee.com/file-input
 	$("#image").fileinput({'showUpload':false, 'previewFileType':'any', 'language':'es', 'showUpload':false, 'allowedFileTypes':['image'], 'maxFileSize':2048});
+    $("#file").fileinput({'showUpload':false, 'previewFileType':'any', 'language':'es', 'showUpload':false, 'allowedFileExtensions':['doc', 'docx','ppt', 'pptx','xls', 'xlsx','pdf','jpg','png'], 'maxFileSize':2048});
 
     //Mas informacion sobre bootstrap datepicker aqui http://eonasdan.github.io/bootstrap-datetimepicker/
     $('#date').datetimepicker({

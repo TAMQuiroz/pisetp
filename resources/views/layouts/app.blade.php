@@ -30,7 +30,7 @@
     <script src="{{ URL::asset('js/moment-with-locales.js') }}"></script>
     <script src="{{ URL::asset('js/bootstrap-datetimepicker.js') }}"></script>
 
-
+    @yield('header')
 
 </head>
 <body id="app-layout">
@@ -103,6 +103,7 @@
 
     @yield('content')
 
+    @yield('footer')
 
 </body>
 </html>

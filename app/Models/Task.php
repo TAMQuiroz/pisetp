@@ -25,8 +25,13 @@ class Task extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
+    public function files()
+    {
+        return $this->hasMany('App\Models\File', 'task_id');
+    }    
+
     /**
-     * Helper functions
+     * Helper Methods
      */
     static public function forUser(User $user)
     {

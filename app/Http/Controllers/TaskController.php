@@ -72,10 +72,8 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Task $task)
     {
-        $task = Task::find($id);
-
         $data = [
             'task' => $task
         ];
@@ -89,10 +87,8 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Task $task)
     {
-        $task = Task::find($id);
-
         $data = [
             'task' => $task
         ];
@@ -107,10 +103,8 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TaskRequest $request, $id)
+    public function update(TaskRequest $request, Task $task)
     {
-        // Create The Task...
-        $task = Task::find($id);
         $task->update([
             'name'          =>  $request->name,
             'description'   =>  $request->description,
@@ -139,13 +133,22 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Task $task)
     {
-        $task = Task::find($id);
         if(Auth::id() == $task->user_id){
+            foreach ($task->files as $file) {
+                $exists = Storage::exists('public/'.$file->url);
+
+                if($exists){
+                    Storage::delete('public/'.$file->url);
+                }
+                
+                $file->delete();  
+            }
+
             $exists = Storage::exists('public/'.$task->image);
 
-            if($exists){
+            if($exists && $task->image){
                 Storage::delete('public/'.$task->image);
             }
             

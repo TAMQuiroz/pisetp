@@ -11,10 +11,8 @@ class Role extends Model
         return $this->belongsToMany(User::class);
     }
 
-    static public function getNotSelected($id)
+    static public function getNotSelected($user)
     {
-    	$user = User::find($id);
-
         $idsToDelete = [];
         $indexOfIds = [];
 

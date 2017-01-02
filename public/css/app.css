@@ -31,3 +31,7 @@ body {
 .pointer{
 	cursor: pointer;
 }
+
+img.img-responsive.file_icon{
+    height: 15em;
+}
