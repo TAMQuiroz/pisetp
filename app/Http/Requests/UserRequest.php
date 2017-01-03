@@ -26,6 +26,7 @@ class UserRequest extends Request
         return [
             'name'          => 'required|max:255',
             'email'         => 'required|email',
+            'nickname'      => 'required|unique:users|max:255'
         ];
     }
 }

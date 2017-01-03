@@ -21,6 +21,11 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'home']);
 
+	//AJAX
+	Route::group(['prefix' => 'ajax'], function () {	
+		Route::get('checkNickname', ['uses' => 'UserController@checkNickname', 'as' => 'ajax.nickname']);
+	});
+
 	//ROLES
 	Route::group(['prefix' => 'roles'], function () {	
 		Route::get('/', ['uses' => 'RoleController@index', 'as' => 'role.index']);

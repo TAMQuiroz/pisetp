@@ -7,6 +7,7 @@ use Auth;
 use App\User;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests;
+use Ajax;
 
 class UserController extends Controller
 {
@@ -84,6 +85,7 @@ class UserController extends Controller
         $user->update([
             'name'          =>  $request->name,
             'email'         =>  $request->email,
+            'nickname'         =>  $request->nickname,
         ]);
 
         return redirect()->route('user.show',$user->id)->with('status','Se pudo editar el usuario satisfactoriamente');
@@ -98,5 +100,21 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function checkNickname(Request $request)
+    {
+        if(!Auth::check())
+        {
+            return response()->json(['success' => false, 'message', 'No tiene permitida esta accion'], 200);
+        }
+
+        $data = $request->task_nickname;
+
+        if(!User::where('nickname', $data)->where('id', '<>' ,Auth::id())->first()){
+            return response()->json(['success' => true, 'message' => 'Este apodo esta libre para ser usado'], 200);
+        }else{
+            return response()->json(['success' => false, 'message' => 'Este apodo ya se encuentra en uso'], 200);
+        }
     }
 }

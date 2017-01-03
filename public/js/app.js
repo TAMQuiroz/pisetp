@@ -1,3 +1,10 @@
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+})
+
+
 //Timeout para alertas
 
 window.setTimeout(function() {
@@ -41,4 +48,6 @@ $( document ).ready(function() {
         $('#dateIni').data("DateTimePicker").maxDate(e.date);
     });
 
+    $("form").validate();
 });
+
