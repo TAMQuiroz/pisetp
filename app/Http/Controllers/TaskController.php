@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use PDF;
 use Storage;
+use App\User;
 use App\Models\Task;
 use App\Http\Requests;
 use App\Http\Requests\TaskRequest;
@@ -158,5 +160,45 @@ class TaskController extends Controller
         }
 
         return redirect()->route('task.index')->with('status','Se pudo eliminar la tarea satisfactoriamente');
+    }
+
+    public function exportpdf(Task $task)
+    {
+        $data = [
+            'task'  =>  $task,
+        ];
+
+        $pdf = PDF::loadView('task.export', $data);
+
+
+        return @$pdf->download('task.pdf');
+    }
+
+    public function exportpublicindexpdf()
+    {
+        $tasks = Task::all();
+
+        $data = [
+            'tasks'  =>  $tasks,
+        ];
+
+        $pdf = PDF::loadView('task.exportindex', $data);
+
+
+        return @$pdf->download('tasks.pdf');
+    }
+
+    public function exportindexpdf(User $user)
+    {
+        $tasks = $user->tasks;
+
+        $data = [
+            'tasks'  =>  $tasks,
+        ];
+
+        $pdf = PDF::loadView('task.exportindex', $data);
+
+
+        return @$pdf->download('tasks.pdf');
     }
 }

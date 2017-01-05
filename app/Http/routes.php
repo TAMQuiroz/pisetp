@@ -56,6 +56,10 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::post('{task}/edit', ['uses' => 'TaskController@update', 'as' => 'task.update']);
 
 		Route::delete('{task}/delete', ['uses' => 'TaskController@destroy', 'as' => 'task.delete']);
+
+		Route::get('{task}/exportpdf', ['uses' => 'TaskController@exportpdf', 'as' => 'task.export.pdf']);
+		Route::get('exportindexpdf/{user}', ['uses' => 'TaskController@exportindexpdf', 'as' => 'task.export.index.pdf']);
+		Route::get('exportpublicindexpdf', ['uses' => 'TaskController@exportpublicindexpdf', 'as' => 'task.export.public.index.pdf']);
 	});
 
 	//FILES

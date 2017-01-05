@@ -17,9 +17,14 @@
                             {{Form::button('<i class="fa fa-filter"></i> Filtrar', ['class' => 'btn btn-warning', 'data-toggle' => 'modal', 'data-target' => '#filter'])}}
                             @include('modals.tasks.filter-task', ['id'=> 'filter', 'url' => route('task.index')])
 
-                            <a href="{{route('task.create')}}">
-                                {{Form::button('<i class="fa fa-plus"></i> Crear', ['class' => 'btn btn-success pull-right'])}}
+                            <a href="{{route('task.export.index.pdf', Auth::id())}}">
+                                {{Form::button('<i class="fa fa-file-pdf-o"></i> PDF', ['class' => 'btn btn-primary'])}}
                             </a>
+                            
+                            <a href="{{route('task.create')}}">
+                                {{Form::button('<i class="fa fa-plus"></i> Crear', ['class' => 'btn btn-success'])}}
+                            </a>
+
                         </div>
                     </div>
                 </div>

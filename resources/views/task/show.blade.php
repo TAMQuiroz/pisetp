@@ -78,6 +78,10 @@
                                 <a href="{{route('file.index',$task->id)}}">
                                     {{Form::button('<i class="fa fa-pencil"></i> Mis Archivos', ['class' => 'btn btn-primary'])}}
                                 </a>
+
+                                <a href="{{route('task.export.pdf',$task->id)}}">
+                                    {{Form::button('<i class="fa fa-file-pdf-o"></i> PDF', ['class' => 'btn btn-primary'])}}
+                                </a>
                                 @endif
                                 <a href="{{route('task.index')}}">
                                     {{Form::button('<i class="fa fa-repeat"></i> Regresar', ['class' => 'btn btn-default pull-right'])}}

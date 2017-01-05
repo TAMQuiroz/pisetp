@@ -14,8 +14,11 @@
                             <h4>Tareas Publicas</h4>
                         </div>
                         <div class="col-md-6">
-                            {{Form::button('<i class="fa fa-filter"></i> Filtrar', ['class' => 'btn btn-warning pull-right', 'data-toggle' => 'modal', 'data-target' => '#filter'])}}
+                            {{Form::button('<i class="fa fa-filter"></i> Filtrar', ['class' => 'btn btn-warning', 'data-toggle' => 'modal', 'data-target' => '#filter'])}}
                             @include('modals.tasks.filter-general-task', ['id'=> 'filter', 'url' => route('home')])
+                            <a href="{{route('task.export.public.index.pdf')}}">
+                                {{Form::button('<i class="fa fa-file-pdf-o"></i> PDF', ['class' => 'btn btn-primary'])}}
+                            </a>
                         </div>
                     </div>
                 </div>
