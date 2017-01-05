@@ -53,8 +53,10 @@ class FileController extends Controller
             'task_id'       =>  $task->id,
         ]);
 
-        Storage::put('public/files/tasks/'.$file->id.'.'.$request->file('file')->getClientOriginalExtension(), file_get_contents($request->file('file')->getRealPath()));
-        $file->update(['url' => 'files/tasks/'.$file->id.'.'.$request->file('file')->getClientOriginalExtension(), 'extension' => $request->file('file')->getClientOriginalExtension()]);
+        $extension = strtolower($request->file('file')->getClientOriginalExtension());
+
+        Storage::put('public/files/tasks/'.$file->id.'.'.$extension, file_get_contents($request->file('file')->getRealPath()));
+        $file->update(['url' => 'files/tasks/'.$file->id.'.'.$extension, 'extension' => $extension]);
 
         return redirect()->route('file.index', $task->id)->with('status','Se pudo subir el archivo satisfactoriamente');
     }
