@@ -59,7 +59,10 @@ Route::group(['middleware' => 'auth'], function() {
 
 		Route::get('{task}/exportpdf', ['uses' => 'TaskController@exportpdf', 'as' => 'task.export.pdf']);
 		Route::get('exportindexpdf/{user}', ['uses' => 'TaskController@exportindexpdf', 'as' => 'task.export.index.pdf']);
+		Route::get('exportindexexcel/{user}', ['uses' => 'TaskController@exportindexexcel', 'as' => 'task.export.index.excel']);
+		
 		Route::get('exportpublicindexpdf', ['uses' => 'TaskController@exportpublicindexpdf', 'as' => 'task.export.public.index.pdf']);
+		Route::get('exportpublicindexexcel', ['uses' => 'TaskController@exportpublicindexexcel', 'as' => 'task.export.public.index.excel']);
 	});
 
 	//FILES

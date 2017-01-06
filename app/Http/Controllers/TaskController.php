@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Excel;
 use PDF;
 use Storage;
 use App\User;
@@ -200,5 +201,49 @@ class TaskController extends Controller
 
 
         return @$pdf->download('tasks.pdf');
+    }
+
+    public function exportindexexcel(User $user)
+    {
+        $tasks = $user->tasks;
+
+        $data = [];
+
+        array_push($data, ['Nombre', 'Descripcion', 'Fecha', 'Url de video']);
+
+        foreach ($tasks as $task) {
+            array_push($data, [$task->name, $task->description, $task->date, $task->url]);
+        }
+
+        Excel::create('tasks', function($excel) use ($data) {
+
+            $excel->sheet('Hoja 1', function($sheet) use ($data){
+                $sheet->fromArray($data);
+            });
+
+        })->download('xls');
+
+    }
+
+    public function exportpublicindexexcel()
+    {
+        $tasks = Task::all();
+
+        $data = [];
+
+        array_push($data, ['Nombre', 'Descripcion', 'Autor', 'Fecha', 'Url de video']);
+
+        foreach ($tasks as $task) {
+            array_push($data, [$task->name, $task->description, $task->user->name, $task->date, $task->url]);
+        }
+
+        Excel::create('tasks', function($excel) use ($data) {
+
+            $excel->sheet('Hoja 1', function($sheet) use ($data){
+                $sheet->fromArray($data);
+            });
+
+        })->download('xls');
+
     }
 }

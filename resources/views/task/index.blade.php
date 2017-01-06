@@ -17,10 +17,24 @@
                             {{Form::button('<i class="fa fa-filter"></i> Filtrar', ['class' => 'btn btn-warning', 'data-toggle' => 'modal', 'data-target' => '#filter'])}}
                             @include('modals.tasks.filter-task', ['id'=> 'filter', 'url' => route('task.index')])
 
-                            <a href="{{route('task.export.index.pdf', Auth::id())}}">
-                                {{Form::button('<i class="fa fa-file-pdf-o"></i> PDF', ['class' => 'btn btn-primary'])}}
-                            </a>
-                            
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Reportes <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{{route('task.export.index.pdf', Auth::id())}}">
+                                        <i class="fa fa-file-pdf-o"></i> PDF
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('task.export.index.excel', Auth::id())}}">
+                                        <i class="fa fa-file-excel-o"></i> Excel
+                                    </a>
+                                </li>
+                              </ul>
+                            </div>
+
                             <a href="{{route('task.create')}}">
                                 {{Form::button('<i class="fa fa-plus"></i> Crear', ['class' => 'btn btn-success'])}}
                             </a>

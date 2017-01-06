@@ -18,6 +18,7 @@
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
+                                            <th>Autor</th>
                                             <th>Fecha</th>
                                         </tr>
                                     </thead>
@@ -27,6 +28,10 @@
                                                 <tr>
                                                     <td>
                                                         <div>{{ $task->name }}</div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div>{{ $task->user->name }}</div>
                                                     </td>
 
                                                     <td>
